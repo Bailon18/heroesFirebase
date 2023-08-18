@@ -6,6 +6,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from 'src/environments/environment';
+import { provideFirebaseApp } from '@angular/fire/app';
+import { provideAuth, getAuth} from '@angular/fire/auth'
+import { initializeApp } from 'firebase/app';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 
 
@@ -18,7 +22,10 @@ import { environment } from 'src/environments/environment';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp( environment.firebaseConfig )
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

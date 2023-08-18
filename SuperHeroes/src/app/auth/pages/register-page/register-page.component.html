@@ -3,17 +3,32 @@
     <span class="text-center text-2xl font-bold mb-4 text-primary">Registrar Usuario</span>
   
     <form [formGroup]="registerForm">
-      <mat-form-field class="inputlogin">
-        <mat-label>Correo</mat-label>
-        <input type="email" matInput placeholder="Correo" formControlName="correo">
-      </mat-form-field>
-  
-      <mat-form-field class="inputlogin">
-        <mat-label>Contraseña</mat-label>
-        <input type="password" matInput placeholder="Contraseña" formControlName="contrasena">
+
+      <mat-form-field class="inputlogin mb-2">
+        <mat-label>Nombre</mat-label>
+        <input type="text" matInput placeholder="Nombre" formControlName="nombre">
+        <mat-error *ngIf="isValidField('nombre')">
+          {{ getFieldError('nombre') }}
+        </mat-error>
       </mat-form-field>
 
-      <mat-form-field  appearance="fill"  class="inputlogin">
+      <mat-form-field class="inputlogin mb-2">
+        <mat-label>Correo</mat-label>
+        <input type="email" matInput placeholder="Correo" formControlName="correo">
+        <mat-error *ngIf="isValidField('correo')">
+          {{ getFieldError('correo') }}
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="inputlogin mb-2">
+        <mat-label>Contraseña</mat-label>
+        <input type="password" matInput placeholder="Contraseña" formControlName="contrasena">
+        <mat-error *ngIf="isValidField('contrasena')">
+          {{ getFieldError('contrasena') }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="inputlogin">
         <mat-label>Rol</mat-label>
         <mat-select formControlName="rol" name="rol">
             <mat-option value="Admin">Administrador</mat-option>
