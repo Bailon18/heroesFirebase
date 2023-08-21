@@ -2,7 +2,7 @@ import { Habilidad } from "./habilidad";
 
 export class Superheroe {
 
-    id: number;
+    id: string;
     nombre: string;
     alias: string;
     poderes: string;
@@ -10,7 +10,7 @@ export class Superheroe {
     habilidad?: Habilidad;
 
     constructor(
-        id: number,
+        id: string,
         nombre: string,
         alias: string,
         poderes: string,

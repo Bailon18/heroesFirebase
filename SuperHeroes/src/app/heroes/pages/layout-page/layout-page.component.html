@@ -32,16 +32,16 @@
   
       <span class="spacer"></span>
   
-      <span>{{ user?.email }}</span>
+      <span>{{ nombre  }} -  {{ rol}} | </span>
   
       <button mat-button (click)="onLogout()">
-        Logout
+        <mat-icon>exit_to_app</mat-icon>
       </button>
-  
+      
     </mat-toolbar>
   
   
-    <div class="container p-2">
+    <div class="p-4">
   
       <router-outlet></router-outlet>
   

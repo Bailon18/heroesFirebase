@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,22 +6,36 @@ import { Router } from '@angular/router';
   styles: [
   ]
 })
-export class LayoutPageComponent {
+export class LayoutPageComponent implements OnInit{
 
   public sidebarItems = [
     { label: 'Listado', icon: 'label', url: './listaHeroe', color: 'blue' },
     { label: 'Crear', icon: 'add', url: './nuevoHeroe' , color: 'red'},
   ];
 
+  nombre: string=""
+  rol: string=""
+
   constructor(
     private router: Router
   ) {}
 
-  get user():any | undefined {
-    return 'Bailon';
+  ngOnInit(): void {
+
+    const usuarioo = localStorage.getItem('usuariologeo');
+    if (usuarioo) {
+      
+      const data = JSON.parse(usuarioo);
+      this.nombre = data.nombre;
+      this.rol = data.rol;
+    }
   }
 
+
   onLogout() {
-    this.router.navigate(['/auth/login'])
+
+    localStorage.removeItem('usuariologeo');
+    this.router.navigate(['/auth/login']);
   }
+  
 }

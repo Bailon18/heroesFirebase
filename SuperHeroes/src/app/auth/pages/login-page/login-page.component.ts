@@ -25,6 +25,7 @@ export class LoginPageComponent {
     ){}
 
     login(){
+
       const correo = this.loginForm.value.correo;
       const contrasena = this.loginForm.value.contrasena;
   
@@ -35,8 +36,7 @@ export class LoginPageComponent {
             this.authService.getUserData(user.uid).subscribe((doc) => {
               if (doc.exists) {
                 const userData: any = doc.data();
-                console.log('Nombre:', userData.nombre);
-                console.log('Rol:', userData.rol);
+                localStorage.setItem('usuariologeo', JSON.stringify(userData));
                 this.route.navigate(['heroes'])
               } else {
                 console.log('Usuario no encontrado en Firestore.');
