@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class Contenedor implements OnInit{
 
-  public sidebarItems = [
+  public menus = [
     { label: 'Listado', icon: 'label', url: './listaHeroe', color: 'blue' },
     { label: 'Crear', icon: 'add', url: './nuevoHeroe' , color: 'red'},
   ];
@@ -22,7 +22,7 @@ export class Contenedor implements OnInit{
 
   ngOnInit(): void {
 
-    const usuarioo = localStorage.getItem('usuariolog');
+    const usuarioo = localStorage.getItem('usuariologeo');
     if (usuarioo) {
 
       const data = JSON.parse(usuarioo);

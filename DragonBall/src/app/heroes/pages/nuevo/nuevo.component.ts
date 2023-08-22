@@ -2,7 +2,6 @@ import { HeroeService } from '../../services/dragonService';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Habilidad } from '../../model/habilidad';
 import { listaDeHabilidades, listaDePoderes } from '../../data/data';
 
 @Component({
@@ -11,17 +10,19 @@ import { listaDeHabilidades, listaDePoderes } from '../../data/data';
   styleUrls: ['./nuevo.component.css'],
 })
 export class NuevoComponent implements OnInit {
-  titulo: string = 'Nuevo Heroe';
-  tituloBoton: string = 'Guardar heroe';
+
+  titulo: string = 'Nuevo Personaje';
+  tituloBoton: string = 'Guardar Personaje';
   idHeroeEdi!: string;
 
-  public nuevoheroeForm: FormGroup = this.fb.group({
+  public dragonForm: FormGroup = this.fb.group({
     id: [''],
     nombre: ['', [Validators.required]],
-    alias: ['', [Validators.required]],
-    poderes: ['Super fuerza', [Validators.required]],
+    raza: ['', [Validators.required]],
+    poder: ['Super fuerza', [Validators.required]],
+    transformacion: ['', [Validators.required]],
     descripcion: ['', [Validators.required]],
-    habilidad: [1, [Validators.required]],
+    habilidad: ['Kamehameha', [Validators.required]],
   });
 
   habilidades = listaDeHabilidades;
@@ -43,18 +44,18 @@ export class NuevoComponent implements OnInit {
     });
 
     if (this.idHeroeEdi != null) {
-      this.titulo = 'Editar Heroe';
-      this.tituloBoton = 'Actualizar';
+      this.titulo = 'Editar Personaje';
+      this.tituloBoton = 'Actualizar Personaje';
 
-      // llamar al serrvicio de buscar heroe por id
-      this.heroeService.obtenerHeroePorId(this.idHeroeEdi).subscribe({
+      this.heroeService.buscar(this.idHeroeEdi).subscribe({
         next: (data) => {
 
-          this.nuevoheroeForm.setValue({
+          this.dragonForm.setValue({
             id: this.idHeroeEdi,
             nombre: data.nombre,
-            alias: data.alias,
-            poderes: data.poderes,
+            raza: data.raza,
+            poder: data.poder,
+            transformacion: data.transformacion,
             descripcion: data.descripcion,
             habilidad: data.habilidad
           });
@@ -68,7 +69,7 @@ export class NuevoComponent implements OnInit {
   }
 
   guardarHeroe() {
-    if (this.nuevoheroeForm.valid) {
+    if (this.dragonForm.valid) {
       if (this.idHeroeEdi) {
         this.actualizarHeroe();
       } else {
@@ -80,8 +81,8 @@ export class NuevoComponent implements OnInit {
   }
 
   actualizarHeroe() {
-    const datosActualizados = this.nuevoheroeForm.value;
-    this.heroeService.actualizarHeroe(this.idHeroeEdi, datosActualizados)
+    const datosActualizados = this.dragonForm.value;
+    this.heroeService.actualizar(this.idHeroeEdi, datosActualizados)
       .then(() => {
         alert('Héroe actualizado exitosamente');
         this.retornarListado();
@@ -92,8 +93,8 @@ export class NuevoComponent implements OnInit {
   }
 
   crearNuevoHeroe() {
-    const nuevoHeroe = this.nuevoheroeForm.value;
-    this.heroeService.guardarHeroe(nuevoHeroe)
+    const nuevoHeroe = this.dragonForm.value;
+    this.heroeService.guardar(nuevoHeroe)
       .then((docRef) => {
         alert('Héroe guardado exitosamente con ID:' + docRef.id);
         this.retornarListado();

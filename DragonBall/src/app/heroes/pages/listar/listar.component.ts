@@ -17,7 +17,7 @@ export class ListarComponent implements AfterViewInit , OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  columnas: string[] = ['ID', 'NOMBRE', 'ALIAS', 'PODER', 'HABILIDAD','ACCIONES'];
+  columnas: string[] = ['ID', 'NOMBRE', 'RAZA', 'PODER', 'TRANSFORMACION' ,'HABILIDAD','ACCIONES'];
   dataSource = new MatTableDataSource<DragonBall>;
   habilidades = listaDeHabilidades;
 
@@ -68,7 +68,7 @@ export class ListarComponent implements AfterViewInit , OnInit {
   eliminarHeroe(fila:any) {
 
     if (fila.id) {
-      const confirmacion = confirm('¿Estás seguro de que deseas eliminar este héroe?');
+      const confirmacion = confirm('¿Estás seguro de que deseas eliminar este personaje?');
       if (confirmacion) {
         this.servicio.eliminar(fila.id)
           .then(() => {

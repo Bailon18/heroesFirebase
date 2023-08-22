@@ -3,50 +3,57 @@
 
     <mat-sidenav #sidenav mode="push" [ngStyle]="{ width: '250px' }">
       <mat-toolbar>
-        <span>Menú</span>
+        <span>Dragon Ball</span>
         <span class="spacer"></span>
         <button mat-icon-button (click)="sidenav.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
-  
+
       </mat-toolbar>
-  
+
       <mat-nav-list>
         <mat-list-item
-          *ngFor="let item of sidebarItems"
+
+          *ngFor="let item of menus"
           [routerLink]="item.url"
           (click)="sidenav.toggle()">
           <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
           {{ item.label }}
         </mat-list-item>
       </mat-nav-list>
-  
+
     </mat-sidenav>
-  
-  
+
+
     <mat-toolbar color="primary">
       <button mat-icon-button (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-  
+
       <span class="spacer"></span>
-  
-      <span>{{ nombre  }} -  {{ rol}} | </span>
-  
+
+      <span>{{ rol}}</span>
+
       <button mat-button (click)="onLogout()">
         <mat-icon>exit_to_app</mat-icon>
       </button>
-      
+
     </mat-toolbar>
-  
-  
-    <div class="p-4" style="background-image: url('https://wallpapercrafter.com/sizes/3840x2160/47648-goku-dragon-ball-super-anime-hd-dragon-ball-4k-5k-artist.jpg'); background-size: cover; background-repeat: no-repeat; height: 100vh;">
+
+    <div class="p-4" style="background-image: url('https://wallpapercrafter.com/sizes/3840x2160/47648-goku-dragon-ball-super-anime-hd-dragon-ball-4k-5k-artist.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    ">
       <router-outlet></router-outlet>
     </div>
-  
+
+
+
   </mat-sidenav-container>
-  
-  
-  
-  
-  
+
+
+
+

@@ -2,3 +2,20 @@
     background-color: black;
     color: white;
   }
+
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+  .fullscreen-bg {
+    background-image: url('https://wallpapercrafter.com/sizes/3840x2160/47648-goku-dragon-ball-super-anime-hd-dragon-ball-4k-5k-artist.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

@@ -1,7 +1,7 @@
 <div class="container">
-    <h1 mat-dialog-title style="font-weight: 500;">{{titulo}}</h1>
-    
-    <form [formGroup]="nuevoheroeForm">
+    <h1 mat-dialog-title style="font-weight: 500; color:white">{{titulo}}</h1>
+
+    <form [formGroup]="dragonForm">
 
         <div class="row">
             <div class="col">
@@ -14,12 +14,12 @@
                 <mat-form-field appearance="fill" class="example-full-width">
                     <mat-label>Nombre</mat-label>
                     <input matInput formControlName="nombre">
-                    <mat-error *ngIf="nuevoheroeForm.get('nombre')?.invalid && 
-                                     nuevoheroeForm.get('nombre')?.errors && 
-                                     (nuevoheroeForm.get('nombre')?.dirty || nuevoheroeForm.get('nombre')?.touched)">
+                    <mat-error *ngIf="dragonForm.get('nombre')?.invalid &&
+                                     dragonForm.get('nombre')?.errors &&
+                                     (dragonForm.get('nombre')?.dirty || dragonForm.get('nombre')?.touched)">
                         <small class="text-danger"
-                               *ngIf="nuevoheroeForm.get('nombre')?.hasError('required')">
-                            El campo nombre es requerido
+                               *ngIf="dragonForm.get('nombre')?.hasError('required')">
+                            El campo nombre es obligatorio
                         </small>
                     </mat-error>
                 </mat-form-field>
@@ -29,14 +29,14 @@
         <div class="row">
             <div class="col">
                 <mat-form-field appearance="fill" class="example-full-width ">
-                    <mat-label>Alias</mat-label>
-                    <input matInput formControlName="alias" >
-                    <mat-error *ngIf="nuevoheroeForm.get('alias')?.invalid && 
-                                     nuevoheroeForm.get('alias')?.errors && 
-                                     (nuevoheroeForm.get('alias')?.dirty || nuevoheroeForm.get('alias')?.touched)">
+                    <mat-label>Raza</mat-label>
+                    <input matInput formControlName="raza" >
+                    <mat-error *ngIf="dragonForm.get('raza')?.invalid &&
+                                     dragonForm.get('raza')?.errors &&
+                                     (dragonForm.get('raza')?.dirty || dragonForm.get('raza')?.touched)">
                         <small class="text-danger"
-                        *ngIf="nuevoheroeForm.get('alias')?.hasError('required')">
-                            Campo alias es requerido
+                        *ngIf="dragonForm.get('raza')?.hasError('required')">
+                            Campo raza es obligatorio
                         </small>
                     </mat-error>
                 </mat-form-field>
@@ -47,7 +47,7 @@
             <div class="col">
                 <mat-form-field appearance="fill" class="example-full-width">
                     <mat-label>Poder</mat-label>
-                    <mat-select formControlName="poderes" name="poderes">
+                    <mat-select formControlName="poder" name="poder">
                         <mat-option *ngFor="let poder of poderes" [value]="poder">
                             {{ poder }}
                         </mat-option>
@@ -55,38 +55,51 @@
                 </mat-form-field>
             </div>
         </div>
-        
+
+        <div class="row">
+          <div class="col">
+              <mat-form-field appearance="fill" class="example-full-width ">
+                  <mat-label>Transformacion</mat-label>
+                  <input matInput formControlName="transformacion" >
+                  <mat-error *ngIf="dragonForm.get('transformacion')?.invalid &&
+                                   dragonForm.get('transformacion')?.errors &&
+                                   (dragonForm.get('transformacion')?.dirty || dragonForm.get('transformacion')?.touched)">
+                      <small class="text-danger"
+                      *ngIf="dragonForm.get('transformacion')?.hasError('required')">
+                          Campo Transformacion es obligatorio
+                      </small>
+                  </mat-error>
+              </mat-form-field>
+          </div>
+      </div>
 
         <div class="row">
             <div class="col">
                 <mat-form-field appearance="fill" class="example-full-width">
                     <mat-label>Habilidad</mat-label>
                     <mat-select formControlName="habilidad" name="habilidad">
-                        <mat-option *ngFor="let habilidad of habilidades" [value]="habilidad.id">
+                        <mat-option *ngFor="let habilidad of habilidades" [value]="habilidad">
                             <div>
-                                <span>{{ habilidad.nombre }} - </span>
-                                <div class="text-muted">
-                                    Nivel: {{ habilidad.nivel }} - Tipo: {{ habilidad.tipo }}
-                                </div>
+                                <span>{{ habilidad }} - </span>
                             </div>
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
         </div>
-        
-    
+
+
         <div class="row">
             <div class="col">
                 <mat-form-field appearance="fill" class="example-full-width ">
                     <mat-label>Descripción</mat-label>
                     <textarea matInput matTextareaAutosize matAutosizeMinRows="3" matAutosizeMaxRows="8" formControlName="descripcion" rows="5"></textarea>
-                    <mat-error *ngIf="nuevoheroeForm.get('descripcion')?.invalid && 
-                    nuevoheroeForm.get('descripcion')?.errors && 
-                    (nuevoheroeForm.get('descripcion')?.dirty || nuevoheroeForm.get('descripcion')?.touched)">
+                    <mat-error *ngIf="dragonForm.get('descripcion')?.invalid &&
+                    dragonForm.get('descripcion')?.errors &&
+                    (dragonForm.get('descripcion')?.dirty || dragonForm.get('descripcion')?.touched)">
                         <small class="text-danger"
-                        *ngIf="nuevoheroeForm.get('alias')?.hasError('required')">
-                            Campo alias es requerido
+                        *ngIf="dragonForm.get('raza')?.hasError('required')">
+                            Campo raza es obligatorio
                         </small>
                     </mat-error>
                 </mat-form-field>
@@ -96,7 +109,7 @@
         <div class="row">
             <div class="col">
                 <button class="btn btn-secondary m-2"  (click)="retornarListado()">Cancelar</button>
-                <button class="btn btn-primary" type="submit" (click)="guardarHeroe()" [disabled]="nuevoheroeForm.invalid">{{tituloBoton}}</button>
+                <button class="btn btn-primary" type="submit" (click)="guardarHeroe()" [disabled]="dragonForm.invalid">{{tituloBoton}}</button>
             </div>
         </div>
     </form>
