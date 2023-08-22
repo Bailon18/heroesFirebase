@@ -1,29 +1,29 @@
 
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { Superheroe } from '../../model/super-heroe';
+import { DragonBall } from '../../model/dragon-ball';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { HeroeService } from '../../services/heroes.service';
+import { HeroeService } from '../../services/dragonService';
 import { listaDeHabilidades } from '../../data/data';
 @Component({
   selector: 'app-list-page',
-  templateUrl: './list-page.component.html',
-  styleUrls: ['./list-page.component.css']
+  templateUrl: './listar.component.html',
+  styleUrls: ['./listar.component.css']
 })
-export class ListPageComponent implements AfterViewInit , OnInit {
+export class ListarComponent implements AfterViewInit , OnInit {
 
   estadoFiltro:any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   columnas: string[] = ['ID', 'NOMBRE', 'ALIAS', 'PODER', 'HABILIDAD','ACCIONES'];
-  dataSource = new MatTableDataSource<Superheroe>;
+  dataSource = new MatTableDataSource<DragonBall>;
   habilidades = listaDeHabilidades;
 
   constructor(
     private router: Router,
-    private heroesServicios: HeroeService
+    private servicio: HeroeService
     ) {}
 
   ngOnInit(): void {
@@ -43,7 +43,7 @@ export class ListPageComponent implements AfterViewInit , OnInit {
   }
 
   listarUsuarios(){
-    return this.heroesServicios.listarHeroes().subscribe(
+    return this.servicio.listar().subscribe(
       {next: res => {
         this.dataSource = new MatTableDataSource(res)
         this.dataSource.paginator = this.paginator;
@@ -64,13 +64,13 @@ export class ListPageComponent implements AfterViewInit , OnInit {
     this.router.navigate(['/heroes/editHeroe/'+fila.id]);
   }
 
- 
+
   eliminarHeroe(fila:any) {
 
     if (fila.id) {
       const confirmacion = confirm('¿Estás seguro de que deseas eliminar este héroe?');
       if (confirmacion) {
-        this.heroesServicios.eliminarHeroe(fila.id)
+        this.servicio.eliminar(fila.id)
           .then(() => {
             alert('Héroe eliminado exitosamente');
             this.listarUsuarios();
@@ -83,5 +83,5 @@ export class ListPageComponent implements AfterViewInit , OnInit {
       alert('No se puede eliminar un héroe sin ID');
     }
   }
-  
+
 }

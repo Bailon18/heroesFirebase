@@ -1,4 +1,4 @@
-import { HeroeService } from './../../services/heroes.service';
+import { HeroeService } from '../../services/dragonService';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -7,10 +7,10 @@ import { listaDeHabilidades, listaDePoderes } from '../../data/data';
 
 @Component({
   selector: 'app-new-page',
-  templateUrl: './new-page.component.html',
-  styleUrls: ['./new-page.component.css'],
+  templateUrl: './nuevo.component.html',
+  styleUrls: ['./nuevo.component.css'],
 })
-export class NewPageComponent implements OnInit {
+export class NuevoComponent implements OnInit {
   titulo: string = 'Nuevo Heroe';
   tituloBoton: string = 'Guardar heroe';
   idHeroeEdi!: string;
@@ -49,7 +49,7 @@ export class NewPageComponent implements OnInit {
       // llamar al serrvicio de buscar heroe por id
       this.heroeService.obtenerHeroePorId(this.idHeroeEdi).subscribe({
         next: (data) => {
-  
+
           this.nuevoheroeForm.setValue({
             id: this.idHeroeEdi,
             nombre: data.nombre,
@@ -58,7 +58,7 @@ export class NewPageComponent implements OnInit {
             descripcion: data.descripcion,
             habilidad: data.habilidad
           });
-          
+
         },
         error: (error) => {
           alert('Error al consultar por el id del héroe:' + error);
@@ -78,7 +78,7 @@ export class NewPageComponent implements OnInit {
       alert('Por favor completa todos los campos requeridos.');
     }
   }
-  
+
   actualizarHeroe() {
     const datosActualizados = this.nuevoheroeForm.value;
     this.heroeService.actualizarHeroe(this.idHeroeEdi, datosActualizados)
@@ -90,7 +90,7 @@ export class NewPageComponent implements OnInit {
         alert('Error al actualizar el héroe:' + error);
       });
   }
-  
+
   crearNuevoHeroe() {
     const nuevoHeroe = this.nuevoheroeForm.value;
     this.heroeService.guardarHeroe(nuevoHeroe)
@@ -102,7 +102,7 @@ export class NewPageComponent implements OnInit {
         alert('Error al guardar el héroe:' + error);
       });
   }
-  
+
   retornarListado() {
     this.route.navigate(['/heroes/listaHeroe']);
   }

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  templateUrl: './layout-page.component.html',
+  templateUrl: './contenedor.html',
   styles: [
   ]
 })
-export class LayoutPageComponent implements OnInit{
+export class Contenedor implements OnInit{
 
   public sidebarItems = [
     { label: 'Listado', icon: 'label', url: './listaHeroe', color: 'blue' },
@@ -22,9 +22,9 @@ export class LayoutPageComponent implements OnInit{
 
   ngOnInit(): void {
 
-    const usuarioo = localStorage.getItem('usuariologeo');
+    const usuarioo = localStorage.getItem('usuariolog');
     if (usuarioo) {
-      
+
       const data = JSON.parse(usuarioo);
       this.nombre = data.nombre;
       this.rol = data.rol;
@@ -34,8 +34,8 @@ export class LayoutPageComponent implements OnInit{
 
   onLogout() {
 
-    localStorage.removeItem('usuariologeo');
+    localStorage.removeItem('usuariolog');
     this.router.navigate(['/auth/login']);
   }
-  
+
 }

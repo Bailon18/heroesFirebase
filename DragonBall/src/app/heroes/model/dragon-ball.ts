@@ -1,6 +1,6 @@
 import { Habilidad } from "./habilidad";
 
-export class Superheroe {
+export class DragonBall {
 
     id: string;
     nombre: string;
